@@ -38,15 +38,17 @@ void mostrarNumerosOrdenados() {
 
 void selectionSort() {
     int n = numeros.size();
+    if (n <= 1) {
+        return;
+    }
 
     for (int i = 0; i < n - 1; i++) {
-        int min_idx = i; 
+        int min_idx = i;
         for (int j = i + 1; j < n; j++) {
             if (numeros[j] < numeros[min_idx]) {
                 min_idx = j;
             }
         }
-
         int temp = numeros[i];
         numeros[i] = numeros[min_idx];
         numeros[min_idx] = temp;
@@ -54,7 +56,7 @@ void selectionSort() {
 }
 
 void heapify(int n, int i) {
-    int mayor = i;
+    int mayor = i; 
     int izquierda = 2 * i + 1;
     int derecha = 2 * i + 2;
 
@@ -77,11 +79,15 @@ void heapify(int n, int i) {
 void heapSort() {
     int n = numeros.size();
 
+    if (n <= 1) {
+        return;
+    }
+
     for (int i = n / 2 - 1; i >= 0; i--) {
         heapify(n, i);
     }
 
-    for (int i = n - 1; i > 0; i--) {
+    for (int i = n - 1; i >= 0; i--) {
         int temp = numeros[0];
         numeros[0] = numeros[i];
         numeros[i] = temp;
@@ -91,15 +97,32 @@ void heapSort() {
 }
 
 void countingSort() {
+    int n = numeros.size();
+
+    if (n <= 1) {
+        return;
+    }
+
     int maxVal = numeros[0];
-    for (int i = 1; i < numeros.size(); i++) {
+    for (int i = 1; i < n; i++) {
         if (numeros[i] > maxVal) {
             maxVal = numeros[i];
         }
     }
 
+    int minVal = numeros[0];
+    for (int i = 1; i < n; i++) {
+        if (numeros[i] < minVal) {
+            minVal = numeros[i];
+        }
+    }
+    if (minVal < 0) {
+        cout << "Error: Counting Sort no puede manejar numeros negativos." << endl;
+        return;
+    }
+
     vector<int> conteo(maxVal + 1, 0);
-    for (int i = 0; i < numeros.size(); i++) {
+    for (int i = 0; i < n; i++) {
         conteo[numeros[i]]++;
     }
 
