@@ -14,3 +14,9 @@ void countingSort();
 void quickSort(int izquierda, int derecha);
 bool estaOrdenado();
 void mostrarMenu();
+
+int main() {
+    leerArchivo("numeros.txt");
+    mostrarMenu();
+    return 0;
+}
