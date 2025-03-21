@@ -56,23 +56,23 @@ void selectionSort() {
 }
 
 void heapify(int n, int i) {
-    int mayor = i; 
+    int menor = i;
     int izquierda = 2 * i + 1;
     int derecha = 2 * i + 2;
 
-    if (izquierda < n && numeros[izquierda] > numeros[mayor]) {
-        mayor = izquierda;
+    if (izquierda < n && numeros[izquierda] < numeros[menor]) {
+        menor = izquierda;
     }
 
-    if (derecha < n && numeros[derecha] > numeros[mayor]) {
-        mayor = derecha;
+    if (derecha < n && numeros[derecha] < numeros[menor]) {
+        menor = derecha;
     }
 
-    if (mayor != i) {
+    if (menor != i) {
         int temp = numeros[i];
-        numeros[i] = numeros[mayor];
-        numeros[mayor] = temp;
-        heapify(n, mayor);
+        numeros[i] = numeros[menor];
+        numeros[menor] = temp;
+        heapify(n, menor);
     }
 }
 
