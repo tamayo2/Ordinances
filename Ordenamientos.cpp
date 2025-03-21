@@ -55,8 +55,9 @@ void selectionSort() {
     }
 }
 
+//"mayor" a "menor" para usar un heap mínimo
 void heapify(int n, int i) {
-    int menor = i;
+    int menor = i; 
     int izquierda = 2 * i + 1;
     int derecha = 2 * i + 2;
 
